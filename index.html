@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Midnight Heist</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #111;
+      color: #eee;
+    }
+    a       { color: #79d0ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr      { border: 0; border-top: 1px solid #444; }
+
+    /* floating restart button */
+    #restart {
+      position: fixed;
+      top: 1rem; right: 1rem;
+      background: #333; color: #fff;
+      border: none; padding: 0.5rem 1rem;
+      cursor: pointer; border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- universal restart -->
+  <button id="restart">Start Over</button>
+
+  <!-- where the engine writes all story output -->
+  <div id="output"></div>
+
+  <!-- tiny single‑file StoryGraph stub -->
+  <script src="lib/engine.js"></script>
+
+  <!-- your custom scenes -->
+  <script src="Rules.js"></script>
+
+  <!-- connect restart button AFTER Engine exists -->
+  <script>
+    document.getElementById("restart").onclick = () => {
+      Engine.history = [];          // clear navigation stack
+      Engine.gotoScene(Start);      // back to the intro
+    };
+  </script>
+</body>
+</html>
