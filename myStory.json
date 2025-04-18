@@ -13,16 +13,17 @@
       },
   
       "LivingRoom": {
-        "Body": "Family photos line the mantle. A hallway leads deeper into the house. A door to the right says \"Study.\"",
+        "Body": "Family photos line the mantle. A hallway leads deeper into the house. A ladder leads up to a dark attic hatch.",
         "Choices": [
           { "Text": "Sneak into the study", "Target": "Study" },
-          { "Text": "Continue down the hallway", "Target": "BackHallway", "RequiresFlag": "alarmOff" }
+          { "Text": "Continue down the hallway", "Target": "BackHallway", "RequiresFlag": "alarmOff" },
+          { "Text": "Climb into the attic", "Target": "Attic", "RequiresItem": "lamp" }
         ]
       },
   
       "Kitchen": {
-        "Body": "The kitchen smells like leftover take‑out. A lone <strong>Dog Treat</strong> sits on the counter.",
-        "Item": "Treat",
+        "Body": "The kitchen smells like leftover take‑out.",
+        "Items": ["treat","lamp"],
         "Choices": [
           { "Text": "Return to the foyer", "Target": "Foyer" }
         ]
@@ -48,7 +49,7 @@
             "Text": "Toss the dog treat",
             "Target": "BackHallway",
             "SetFlag": "dogDistracted",
-            "RequiresItem": "Treat",
+            "RequiresItem": "treat",
             "RequiresFlagNot": "dogDistracted"
           },
           {
@@ -70,8 +71,8 @@
       },
   
       "OfficeDesk": {
-        "Body": "You slip into the quiet office. Papers everywhere. In the top drawer you find a sticky note: <strong>Key&nbsp;Code&nbsp;7329</strong>.",
-        "Item": "KeyCode",
+        "Body": "You slip into the quiet office. Papers everywhere. In the top drawer you find a sticky note.",
+        "Items": ["keycode"],
         "Choices": [
           { "Text": "Head to the master bedroom", "Target": "MasterBedroom" },
           { "Text": "Return to the hallway",      "Target": "BackHallway"   }
@@ -94,6 +95,25 @@
         "Choices": [
           { "Text": "Back away", "Target": "MasterBedroom" }
         ]
+      },
+  
+      "Attic": {
+        "Dark": true,
+        "Body": "Boxes tower in the shadows. A murky fish‑tank gurgles in the corner.",
+        "Items": ["fish"],
+        "Choices": [
+          {
+            "Text": "Read the strange symbols on a locked box",
+            "Target": "CarouselRoom",
+            "RequiresItem": "fish"
+          },
+          { "Text": "Climb back down", "Target": "LivingRoom" }
+        ]
+      },
+  
+      "CarouselRoom": {
+        "Type": "Carousel",
+        "Body": "The symbols flare and a swirling doorway pulls you through…"
       }
     }
   }

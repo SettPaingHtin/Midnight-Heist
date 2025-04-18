@@ -1,0 +1,23 @@
+{
+    "lamp": {
+      "class": "Lamp",
+      "name": "flashlight",
+      "onPickup": "You pocket the flashlight."
+    },
+    "treat": {
+      "class": "Key",
+      "name": "dog treat",
+      "onPickup": "You grab the treat."
+    },
+    "keycode": {
+      "class": "Key",
+      "name": "sticky note with 7329",
+      "onPickup": "You take the sticky note."
+    },
+    "fish": {
+      "class": "TranslatorFish",
+      "name": "translator fish",
+      "onPickup": "The fish wiggles, then slips happily into your ear. Weird!"
+    }
+  }
+  

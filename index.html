@@ -4,32 +4,32 @@
   <meta charset="UTF-8" />
   <title>Midnight Heist</title>
   <style>
-    body{margin:0;padding:2rem;font-family:"Segoe UI",Helvetica,Arial,sans-serif;background:#111;color:#eee}
+    body{margin:0;padding:2rem;font-family:Arial,Helvetica,sans-serif;background:#111;color:#eee}
     a{color:#79d0ff;text-decoration:none}a:hover{text-decoration:underline}
     hr{border:0;border-top:1px solid #444}
     .ui-btn{position:fixed;top:1rem;padding:.5rem 1rem;border:none;border-radius:4px;cursor:pointer}
     #restart{right:1rem;background:#333;color:#fff}
     #back   {right:8rem;background:#555;color:#fff}
+    #lampToggle{right:15rem;background:#777;color:#fff}
   </style>
 </head>
 <body>
-  <button id="restart" class="ui-btn">Start Over</button>
-  <button id="back"    class="ui-btn">Back</button>
+  <button id="restart"    class="ui-btn">Start Over</button>
+  <button id="back"       class="ui-btn">Back</button>
+  <button id="lampToggle" class="ui-btn">Toggle Lamp</button>
 
   <div id="output"></div>
 
   <script src="lib/engine.js"></script>
   <script src="Rules.js"></script>
-
   <script>
-    document.getElementById("restart").onclick = () => {
-      Engine.history = [];
-      Engine.gotoScene(Start);
-    };
-    document.getElementById("back").onclick = () => {
-      Engine.goBack();
+    restart.onclick = ()=>{Engine.history=[];Engine.gotoScene(Start)};
+    back.onclick    = ()=>{Engine.goBack()};
+    lampToggle.onclick = ()=>{
+      const lamp=ITEM_REGISTRY.lamp;
+      if(lamp && GAME.inventory.has("lamp")) lamp.toggle(Engine.currentScene);
+      else alert("You don't have a lamp yet.");
     };
   </script>
 </body>
 </html>
-
