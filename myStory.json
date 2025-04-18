@@ -1,6 +1,6 @@
 {
     "Title": "Midnight Heist",
-    "Credits": "Created by Sett Paing Htin(shtin@ucsc.edu)",
+    "Credits": "Created by Sett Paing Htin (shtin@ucsc.edu)",
     "InitialLocation": "Foyer",
   
     "Locations": {
@@ -8,7 +8,7 @@
         "Body": "You ease the door shut behind you. A dim bulb flickers overhead. Hallways lead left to the living room and right to the kitchen.",
         "Choices": [
           { "Text": "Head left to the living room",  "Target": "LivingRoom" },
-          { "Text": "Head right to the kitchen",      "Target": "Kitchen"    }
+          { "Text": "Head right to the kitchen",     "Target": "Kitchen"    }
         ]
       },
   
@@ -16,21 +16,20 @@
         "Body": "Family photos line the mantle. A hallway leads deeper into the house. A door to the right says \"Study.\"",
         "Choices": [
           { "Text": "Sneak into the study", "Target": "Study" },
-          { "Text": "Continue down the hallway", "Target": "BackHallway" }
+          { "Text": "Continue down the hallway", "Target": "BackHallway", "RequiresFlag": "alarmOff" }
         ]
       },
   
       "Kitchen": {
-        "Body": "The kitchen smells like leftover take‑out. A lone **Dog Treat** sits on the counter.",
+        "Body": "The kitchen smells like leftover take‑out. A lone <strong>Dog Treat</strong> sits on the counter.",
         "Item": "Treat",
         "Choices": [
           { "Text": "Return to the foyer", "Target": "Foyer" }
         ]
       },
   
-      
-    "Study": {
-        "Body": "Books and an ancient computer fill the study. The screen blinks SECURITY SYSTEM – STATUS <strong>ACTIVE</strong>.",
+      "Study": {
+        "Type": "AlarmStudy",
         "Choices": [
           {
             "Text": "Disable the alarm",
@@ -38,25 +37,24 @@
             "SetFlag": "alarmOff",
             "RequiresFlagNot": "alarmOff"
           },
-          {
-            "Text": "Back to the living room",
-            "Target": "LivingRoom"
-          }
+          { "Text": "Back to the living room", "Target": "LivingRoom" }
         ]
       },
   
       "BackHallway": {
         "Type": "GuardDog",
-        "Body": "A hallway stretches toward the office and master bedroom. A guard dog patrols here.",
         "Choices": [
           {
-            "Text": "Try to calm the dog",
+            "Text": "Toss the dog treat",
             "Target": "BackHallway",
+            "SetFlag": "dogDistracted",
+            "RequiresItem": "Treat",
             "RequiresFlagNot": "dogDistracted"
           },
           {
             "Text": "Retreat to the living room",
-            "Target": "LivingRoom"
+            "Target": "LivingRoom",
+            "RequiresFlagNot": "dogDistracted"
           },
           {
             "Text": "Enter the office",
@@ -72,7 +70,7 @@
       },
   
       "OfficeDesk": {
-        "Body": "You slip into the quiet office. Papers everywhere. In the top drawer you find a sticky note: **Key Code 7329**.",
+        "Body": "You slip into the quiet office. Papers everywhere. In the top drawer you find a sticky note: <strong>Key&nbsp;Code&nbsp;7329</strong>.",
         "Item": "KeyCode",
         "Choices": [
           { "Text": "Head to the master bedroom", "Target": "MasterBedroom" },
@@ -84,14 +82,8 @@
       "MasterBedroom": {
         "Body": "Moonlight filters through curtains. A solid safe sits in the corner.",
         "Choices": [
-          {
-            "Text": "Examine the safe",
-            "Target": "SafeRoom"
-          },
-          {
-            "Text": "Return to the hallway",
-            "Target": "BackHallway"
-          }
+          { "Text": "Examine the safe",  "Target": "SafeRoom" },
+          { "Text": "Return to the hallway", "Target": "BackHallway" }
         ],
         "RequiresFlag": "dogDistracted"
       },
